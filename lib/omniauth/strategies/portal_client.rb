@@ -15,12 +15,11 @@ module OmniAuth
 
 
       uid do
-        p raw_info["id"]
         raw_info["id"]
       end
 
       info do
-        {name: raw_info["name"]}
+        {name: raw_info["email"]}
       end
 
       extra do
