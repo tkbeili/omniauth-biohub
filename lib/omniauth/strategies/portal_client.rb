@@ -52,15 +52,15 @@ module OmniAuth
 
       private
 
-      def oauth_client
-        @oauth_client ||= OAuth2::Client.new(ENV["OAUTH_ID"], ENV["OAUTH_SECRET"], site: "http://localhost:3001")
-      end
+      # def oauth_client
+      #   @oauth_client ||= OAuth2::Client.new(ENV["OAUTH_ID"], ENV["OAUTH_SECRET"], site: "http://localhost:3001")
+      # end
 
-      def access_token
-        if session[:access_token]
-          @access_token ||= OAuth2::AccessToken.new(oauth_client, session[:access_token])
-        end
-      end
+      # def access_token
+      #   if session[:access_token]
+      #     @access_token ||= OAuth2::AccessToken.new(oauth_client, session[:access_token])
+      #   end
+      # end
 
     end
   end
