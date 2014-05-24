@@ -6,6 +6,8 @@ module OmniAuth
     class PortalClient < OmniAuth::Strategies::OAuth2
       class NoAuthorizationCodeError < StandardError; end
 
+      option :name, 'portal_client'
+
       option :client_options, {
         site: "https://portal_with_pg.dev",
         authorize_path: "/oauth/authorize"
