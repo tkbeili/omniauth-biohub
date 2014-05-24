@@ -15,6 +15,7 @@ module OmniAuth
 
 
       uid do
+        p raw_info["id"]
         raw_info["id"]
       end
 
@@ -27,7 +28,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/api/v1/users').parsed
+        @raw_info ||= access_token.get('/api/v1/users').parsed || {}
       end
 
       rescue NoAuthorizationCodeError do |exception|
