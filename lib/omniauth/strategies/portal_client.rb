@@ -9,7 +9,7 @@ module OmniAuth
       option :name, 'portal_client'
 
       option :client_options, {
-        site: "https://portal_with_pg.dev",
+        site: "localhost:3001",
         authorize_path: "/oauth/authorize"
       }
 
