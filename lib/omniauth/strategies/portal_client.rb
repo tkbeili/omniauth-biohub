@@ -29,7 +29,7 @@ module OmniAuth
       end
 
       uid do
-        raw_info["id"]
+        raw_info["id"].to_i
       end
 
       info do
