@@ -14,22 +14,8 @@ module OmniAuth
       }
 
 
-      def request_phase
-        super
-      end
-      
-      def authorize_params
-        super.tap do |params|
-          %w[scope client_options].each do |v|
-            if request.params[v]
-              params[v.to_sym] = request.params[v]
-            end
-          end
-        end
-      end
-
       uid do
-        raw_info["id"].to_i
+        raw_info["id"]
       end
 
       info do
