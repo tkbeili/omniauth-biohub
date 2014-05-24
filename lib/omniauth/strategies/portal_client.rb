@@ -9,7 +9,7 @@ module OmniAuth
       option :name, 'portal_client'
 
       option :client_options, {
-        site: "localhost:3001",
+        site: "https://portal_client.dev",
         authorize_path: "/oauth/authorize"
       }
 
