@@ -1,4 +1,5 @@
 require 'omniauth-oauth2'
+require 'omniauth/strategies/oauth2'
 
 module OmniAuth
   module Strategies
@@ -6,7 +7,7 @@ module OmniAuth
       class NoAuthorizationCodeError < StandardError; end
 
       option :client_options, {
-        site: "http://localhost:3000",
+        site: "https://portal_client.dev",
         authorize_path: "/oauth/authorize"
       }
 
@@ -27,7 +28,9 @@ module OmniAuth
 
       uid { raw_info['id'].to_s }
 
-      info {name: raw_info["name"]}
+      info do
+        {name: raw_info["name"]}
+      end
 
       extra do
         {:raw_info => raw_info}
@@ -37,7 +40,7 @@ module OmniAuth
         @raw_info ||= access_token.get('/api/user').parsed
       end
 
-      rescue_from OAuth2::Error do |exception|
+      rescue NoAuthorizationCodeError do |exception|
         if exception.response.status == 401
           session[:user_id] = nil
           session[:access_token] = nil
@@ -56,7 +59,7 @@ module OmniAuth
           @access_token ||= OAuth2::AccessToken.new(oauth_client, session[:access_token])
         end
       end
-      
+
     end
   end
 end

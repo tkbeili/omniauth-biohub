@@ -1,3 +1,3 @@
-require 'omniauth/facebook'
+require 'omniauth/portal_client'
 
 
