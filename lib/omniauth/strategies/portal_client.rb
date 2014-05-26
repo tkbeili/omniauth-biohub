@@ -1,24 +1,16 @@
 require 'omniauth-oauth2'
 require 'omniauth/strategies/oauth2'
 
-require 'gem_config'
-
 module OmniAuth
   module Strategies
     class PortalClient < OmniAuth::Strategies::OAuth2
       class NoAuthorizationCodeError < StandardError; end
 
-      include GemConfig::Base
-
-      attr_accessor :authorize_site
-      attr_accessor :authorize_path
-
-
       option :name, 'portal_client'
 
       option :client_options, {
-        site:             @authorize_site,
-        authorize_path:   @authorize_path
+        site: "http://localhost:3001",
+        authorize_path: "/oauth/authorize"
       }
 
 
