@@ -10,7 +10,6 @@ module OmniAuth
 
       option :client_options, {
         authorize_path: "/oauth/authorize"
-        # site: "http://localhost:3001",
       }
 
 
