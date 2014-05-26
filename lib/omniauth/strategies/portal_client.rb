@@ -10,16 +10,16 @@ module OmniAuth
 
       include GemConfig::Base
 
-      with_configuration do
-        has :site
-        has :authorize_path
-      end
+      # with_configuration do
+      #   has :site
+      #   has :authorize_path
+      # end
 
       option :name, 'portal_client'
 
       option :client_options, {
-        site:             site,
-        authorize_path:   authorize_path
+        site:             ENV["OAUTH_SITE"],
+        authorize_path:   ENV["OAUTH_AUTHORIZE_PATH"]
       }
 
 
