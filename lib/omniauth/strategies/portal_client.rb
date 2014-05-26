@@ -1,17 +1,26 @@
 require 'omniauth-oauth2'
 require 'omniauth/strategies/oauth2'
 
+require 'gem_config'
+
 module OmniAuth
   module Strategies
     class PortalClient < OmniAuth::Strategies::OAuth2
       class NoAuthorizationCodeError < StandardError; end
 
+      include GemConfig::Base
+
+      with_configuration do
+        has :site
+        has :authorize_path
+      end
+
       option :name, 'portal_client'
 
-      option :client_options, {
-        site:             ENV["OAUTH_SITE"] ,
-        authorize_path:   ENV["OAUTH_AUTHORIZE_PATH"]
-      }
+      # option :client_options, {
+      #   site:             ENV["OAUTH_SITE"],
+      #   authorize_path:   ENV["OAUTH_AUTHORIZE_PATH"]
+      # }
 
 
       uid do
