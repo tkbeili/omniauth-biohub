@@ -3,7 +3,7 @@ require 'omniauth/strategies/oauth2'
 
 module OmniAuth
   module Strategies
-    class PortalClient < OmniAuth::Strategies::OAuth2
+    class Biohub < OmniAuth::Strategies::OAuth2
       class NoAuthorizationCodeError < StandardError; end
 
       option :name, 'biohub'

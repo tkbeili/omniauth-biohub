@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path('../lib', __FILE__)
-require 'omniauth/portal_client/version'
+require 'omniauth/biohub/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "omniauth-biohub"
-  spec.version       = OmniAuth::PortalClient::VERSION
+  spec.version       = OmniAuth::Biohub::VERSION
   spec.authors       = ["I-Lung Lee"]
   spec.email         = ["ilunglee228@gmail.com"]
   spec.summary       = %q{client to use the portal server app}
