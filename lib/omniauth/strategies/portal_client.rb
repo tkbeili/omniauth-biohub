@@ -6,7 +6,7 @@ module OmniAuth
     class PortalClient < OmniAuth::Strategies::OAuth2
       class NoAuthorizationCodeError < StandardError; end
 
-      option :name, 'portal_client'
+      option :name, 'biohub'
 
       option :client_options, {
         authorize_path: "/oauth/authorize"
