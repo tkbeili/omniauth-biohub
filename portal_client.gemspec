@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 require 'omniauth/portal_client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "omniauth-portal_client"
+  spec.name          = "omniauth-biohub"
   spec.version       = OmniAuth::PortalClient::VERSION
   spec.authors       = ["I-Lung Lee"]
   spec.email         = ["ilunglee228@gmail.com"]
