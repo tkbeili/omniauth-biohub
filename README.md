@@ -1,4 +1,4 @@
-# PortalClient
+# Biohub
 
 TODO: Write a gem description
 
