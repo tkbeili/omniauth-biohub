@@ -27,7 +27,7 @@ module OmniAuth
           'name' => raw_info[0]['name'],
           'first_name' => raw_info[0]['first_name'],
           'last_name' => raw_info[0]['last_name'],
-          'location' => (raw_info[0]['location'] || {})['name'],
+          'location' => (raw_info[0]['location'] || {})['name']
         })
       end
 
