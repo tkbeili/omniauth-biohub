@@ -48,12 +48,10 @@ module OmniAuth
         end
       rescue NoAuthorizationCodeError => e
         fail!(:no_authorization_code, e)
-      rescue UnknownSignatureAlgorithmError => e
-        fail!(:unknown_signature_algoruthm, e)
       end
 
       private 
-      
+
       def prune!(hash)
         hash.delete_if do |_, value|
           prune!(value) if value.is_a?(Hash)
