@@ -4,7 +4,7 @@ require 'omniauth/strategies/oauth2'
 module OmniAuth
   module Strategies
     class Biohub < OmniAuth::Strategies::OAuth2
-      
+
       option :name, 'biohub'
 
       option :client_options, {
@@ -21,6 +21,8 @@ module OmniAuth
           'name' => raw_info[0]['name'],
           'first_name' => raw_info[0]['first_name'],
           'last_name' => raw_info[0]['last_name'],
+          'gender' => raw_info[0]['gender'],
+          'birthday' => raw_info[0]['birthday'],
           'location' => (raw_info[0]['location'] || {})['name']
         })
       end
