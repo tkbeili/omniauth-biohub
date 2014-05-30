@@ -21,6 +21,22 @@ module OmniAuth
         {name: raw_info[0]["email"]}
       end
 
+      info do
+        prune!({
+          'email' => raw_info['email'],
+          'name' => raw_info['name'],
+          'first_name' => raw_info['first_name'],
+          'last_name' => raw_info['last_name'],
+          'location' => (raw_info['location'] || {})['name'],
+        })
+      end
+
+      extra do
+        hash = {}
+        hash['raw_info'] = raw_info unless skip_info?
+        prune! hash
+      end
+
       def raw_info
         @raw_info ||= access_token.get('/api/v1/users').parsed || {}
       end
@@ -32,18 +48,6 @@ module OmniAuth
           redirect_to root_url, alert: "Access token expired, try signing in again."
         end
       end
-
-      private
-
-      # def oauth_client
-      #   @oauth_client ||= OAuth2::Client.new(ENV["OAUTH_ID"], ENV["OAUTH_SECRET"], site: "http://localhost:3001")
-      # end
-
-      # def access_token
-      #   if session[:access_token]
-      #     @access_token ||= OAuth2::AccessToken.new(oauth_client, session[:access_token])
-      #   end
-      # end
 
     end
   end
