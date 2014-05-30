@@ -1,9 +1,5 @@
 require 'omniauth-oauth2'
 require 'omniauth/strategies/oauth2'
-require 'base64'
-require 'openssl'
-require 'rack/utils'
-require 'uri'
 
 module OmniAuth
   module Strategies
@@ -45,6 +41,13 @@ module OmniAuth
         @raw_info ||= access_token.get('/api/v1/users').parsed || {}
       end
 
+      def prune!(hash)
+        hash.delete_if do |_, value|
+          prune!(value) if value.is_a?(Hash)
+          value.nil? || (value.respond_to?(:empty?) && value.empty?)
+        end
+      end
+      
       rescue NoAuthorizationCodeError do |exception|
         if exception.response.status == 401
           session[:user_id] = nil
@@ -55,12 +58,6 @@ module OmniAuth
 
       private
 
-      def prune!(hash)
-        hash.delete_if do |_, value|
-          prune!(value) if value.is_a?(Hash)
-          value.nil? || (value.respond_to?(:empty?) && value.empty?)
-        end
-      end
 
     end
   end
