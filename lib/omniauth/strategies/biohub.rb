@@ -41,23 +41,25 @@ module OmniAuth
         @raw_info ||= access_token.get('/api/v1/users').parsed || {}
       end
 
+
+      def callback_phase
+        with_authorization_code! do
+          super
+        end
+      rescue NoAuthorizationCodeError => e
+        fail!(:no_authorization_code, e)
+      rescue UnknownSignatureAlgorithmError => e
+        fail!(:unknown_signature_algoruthm, e)
+      end
+
+      private 
+      
       def prune!(hash)
         hash.delete_if do |_, value|
           prune!(value) if value.is_a?(Hash)
           value.nil? || (value.respond_to?(:empty?) && value.empty?)
         end
       end
-      
-      rescue NoAuthorizationCodeError do |exception|
-        if exception.response.status == 401
-          session[:user_id] = nil
-          session[:access_token] = nil
-          redirect_to root_url, alert: "Access token expired, try signing in again."
-        end
-      end
-
-      private
-
 
     end
   end
