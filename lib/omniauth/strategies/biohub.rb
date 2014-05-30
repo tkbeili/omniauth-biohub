@@ -4,22 +4,16 @@ require 'omniauth/strategies/oauth2'
 module OmniAuth
   module Strategies
     class Biohub < OmniAuth::Strategies::OAuth2
-      class NoAuthorizationCodeError < StandardError; end
-
+      
       option :name, 'biohub'
 
       option :client_options, {
         authorize_path: "/oauth/authorize"
       }
 
-
       uid do
         raw_info[0]["id"]
       end
-
-      # info do
-      #   {name: raw_info[0]["email"]}
-      # end
 
       info do
         prune!({
@@ -39,15 +33,6 @@ module OmniAuth
 
       def raw_info
         @raw_info ||= access_token.get('/api/v1/users').parsed || {}
-      end
-
-
-      def callback_phase
-        with_authorization_code! do
-          super
-        end
-      rescue NoAuthorizationCodeError => e
-        fail!(:no_authorization_code, e)
       end
 
       private 
