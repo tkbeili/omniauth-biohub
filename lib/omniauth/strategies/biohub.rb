@@ -12,18 +12,18 @@ module OmniAuth
       }
 
       uid do
-        raw_info[0]["id"]
+        raw_info["id"]
       end
 
       info do
         prune!({
-          'email' => raw_info[0]['email'],
-          'name' => raw_info[0]['name'],
-          'first_name' => raw_info[0]['first_name'],
-          'last_name' => raw_info[0]['last_name'],
-          'gender' => raw_info[0]['gender'],
-          'birthday' => raw_info[0]['birthday'],
-          'location' => (raw_info[0]['location'] || {})['name']
+          'email' => raw_info['email'],
+          'name' => raw_info['name'],
+          'first_name' => raw_info['first_name'],
+          'last_name' => raw_info['last_name'],
+          'gender' => raw_info['gender'],
+          'birthday' => raw_info['birthday'],
+          'location' => (raw_info['location'] || {})['name']
         })
       end
 
@@ -34,7 +34,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/api/v1/users').parsed || {}
+        @raw_info ||= access_token.get('/api/user').parsed || {}
       end
 
       private 
