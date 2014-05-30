@@ -17,17 +17,17 @@ module OmniAuth
         raw_info[0]["id"]
       end
 
-      info do
-        {name: raw_info[0]["email"]}
-      end
+      # info do
+      #   {name: raw_info[0]["email"]}
+      # end
 
       info do
         prune!({
-          'email' => raw_info['email'],
-          'name' => raw_info['name'],
-          'first_name' => raw_info['first_name'],
-          'last_name' => raw_info['last_name'],
-          'location' => (raw_info['location'] || {})['name'],
+          'email' => raw_info[0]['email'],
+          'name' => raw_info[0]['name'],
+          'first_name' => raw_info[0]['first_name'],
+          'last_name' => raw_info[0]['last_name'],
+          'location' => (raw_info[0]['location'] || {})['name'],
         })
       end
 
