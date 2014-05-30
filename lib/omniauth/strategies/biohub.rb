@@ -62,4 +62,4 @@ module OmniAuth
   end
 end
 
-OmniAuth.config.add_camelization 'github', 'PortalClient'
+# OmniAuth.config.add_camelization 'github', 'PortalClient'
