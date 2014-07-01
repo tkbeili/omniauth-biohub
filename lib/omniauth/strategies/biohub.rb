@@ -25,7 +25,7 @@ module OmniAuth
           'gender' => raw_info['gender'],
           'birthday' => raw_info['birthday'],
           'location' => (raw_info['location'] || {})['name'],
-          'zip_code' => raw_info['postal']
+          'zip_code' => raw_info['zip_code']
         })
       end
 
