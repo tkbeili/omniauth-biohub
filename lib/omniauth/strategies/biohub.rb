@@ -8,7 +8,8 @@ module OmniAuth
       option :name, 'biohub'
 
       option :client_options, {
-        :site => 'http://192.241.195.153/',
+        # :site => 'http://192.241.195.153/',
+        :site => 'http://localhost:3000',
         authorize_path: "/oauth/authorize"
       }
 
